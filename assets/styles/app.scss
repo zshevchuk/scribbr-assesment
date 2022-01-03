@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap";
+body {
+    margin: 0;
+
+    .background {
+
+        background-image: url("./images/mainpage.jpg");
+        width: 100%;
+        color: red;
+        height: 100%;
+        .center-container {
+            top: 40%;
+            left: 45%;
+            position: relative;
+        }
+        .title {
+            margin-left: -150px;
+        }
+
+    }
+}
+
+

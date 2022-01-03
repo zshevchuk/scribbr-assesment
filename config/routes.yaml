@@ -1,0 +1,19 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+    
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /search
+        permanent: true
+
+api_c=search:
+    path: /api/v1/predictions
+    controller: App\Controller\SearchController::apiSearch
+    methods: GET

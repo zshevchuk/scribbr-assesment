@@ -1,0 +1,23 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form(form) }}
+    {% if table  %}
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-inverse">
+            <tr>
+                <th>Time</th>
+                <th>Temperature, {{ scale }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key,value in table %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

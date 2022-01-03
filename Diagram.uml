@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\App\Enum\CsvMappingEnum</OriginalElement>
+  <nodes>
+    <node x="249.0" y="715.0">\App\Model\PredictionsCollection</node>
+    <node x="835.0" y="715.0">\App\Model\PartnersCollection</node>
+    <node x="0.0" y="904.0">\App\Utils\CelsiusBaseScaleConverter</node>
+    <node x="520.0" y="715.0">\App\Model\Prediction</node>
+    <node x="0.0" y="127.0">\App\Repository\PartnerRepository</node>
+    <node x="410.0" y="105.0">\App\Parser\CsvFileParser</node>
+    <node x="417.5" y="0.0">\App\Parser\FileParser</node>
+    <node x="238.0" y="593.0">\App\Model\Scale\CelsiusBaseScale\CelsiusScale</node>
+    <node x="862.0" y="444.0">\App\Model\Search</node>
+    <node x="9.5" y="0.0">\App\Repository\BaseRepository</node>
+    <node x="6.5" y="321.0">\App\Repository\LocalRepository</node>
+    <node x="593.0" y="1026.0">\App\Enum\MinusScales</node>
+    <node x="325.0" y="904.0">\App\Model\Scale\CelsiusBaseScale\FactoryCelsiusBaseScales</node>
+    <node x="0.0" y="715.0">\App\Model\TimePrediction</node>
+    <node x="371.0" y="1026.0">\App\Enum\CsvMappingEnum</node>
+    <node x="501.0" y="444.0">\App\Controller\SearchController</node>
+    <node x="891.0" y="904.0">\App\Model\PredictionSearcher</node>
+    <node x="190.0" y="1026.0">\App\Utils\PartnersMap</node>
+    <node x="612.0" y="904.0">\App\Utils\PredictionNormalizer</node>
+    <node x="582.0" y="116.0">\App\Parser\XmlFileParser</node>
+    <node x="0.0" y="1026.0">\App\Parser\FactoryParser</node>
+    <node x="0.0" y="593.0">\App\Model\Scale\CelsiusBaseScale\FahrenheitScale</node>
+    <node x="119.0" y="444.0">\App\Model\Scale\CelsiusBaseScale</node>
+    <node x="223.0" y="116.0">\App\Parser\JsonFileParser</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\App\Model\Scale\CelsiusBaseScale\FahrenheitScale" target="\App\Model\Scale\CelsiusBaseScale" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="109.0" y="568.0" />
+      <point x="228.0" y="568.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="\App\Parser\CsvFileParser" target="\App\Parser\FileParser" relationship="GENERALIZATION">
+      <point x="0.0" y="-93.5" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="\App\Model\Scale\CelsiusBaseScale\CelsiusScale" target="\App\Model\Scale\CelsiusBaseScale" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="347.0" y="568.0" />
+      <point x="228.0" y="568.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="\App\Parser\XmlFileParser" target="\App\Parser\FileParser" relationship="GENERALIZATION">
+      <point x="0.0" y="-82.5" />
+      <point x="665.5" y="80.0" />
+      <point x="486.0" y="80.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="\App\Repository\LocalRepository" target="\App\Repository\PartnerRepository" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="\App\Parser\JsonFileParser" target="\App\Parser\FileParser" relationship="GENERALIZATION">
+      <point x="0.0" y="-82.5" />
+      <point x="306.5" y="80.0" />
+      <point x="486.0" y="80.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="\App\Repository\PartnerRepository" target="\App\Repository\BaseRepository" relationship="GENERALIZATION">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="350.5" y="360.0" />
+  <SelectedNodes>
+    <node>\App\Enum\CsvMappingEnum</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

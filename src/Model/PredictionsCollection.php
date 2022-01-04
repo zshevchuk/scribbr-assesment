@@ -29,7 +29,7 @@ class PredictionsCollection
         return $this->hashMap;
     }
 
-    private function setValue(string $key, string $value)
+    public function setValue(string $key, string $value)
     {
          $this->hashMap[$key][] = $value;
     }

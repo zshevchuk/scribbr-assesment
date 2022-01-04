@@ -42,5 +42,4 @@ class XmlFileParser extends PredictionFileParser
     {
         return $row['value'];
     }
-
 }

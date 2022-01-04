@@ -32,7 +32,7 @@ abstract class PredictionFileParser implements FileParserInterface, PredictionPa
             $time = $this->getTime($rowContent);
             $value = $this->getValue($rowContent);
 
-            $Prediction->appendTimePrediction($time, $value);
+            $Prediction->pushTimePrediction($time, $value);
         }
 
         return $Prediction;

@@ -16,7 +16,6 @@ class PartnerRepository extends BaseRepository implements PredictionsRepositoryI
 
     public function getPredictions() {}
 
-
     public function getPath(): string
     {
         return $this->path;

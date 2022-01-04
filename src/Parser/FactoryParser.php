@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\File\File;
 // TODO Use Symfony factory
 class FactoryParser implements FactoryInterface
 {
+    /**
+     * Return corresponding parser in regards to a file extension
+     */
     public static function create(File $file): FileParserInterface
     {
         $extension = $file->getExtension();

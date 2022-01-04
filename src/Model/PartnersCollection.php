@@ -19,6 +19,9 @@ class PartnersCollection
         return $this->partners;
     }
 
+    /**
+     * Loop over all partners and fetch and normalize data and add it to the predictions collection
+     */
     public function getData(PredictionsCollection $predictionsCollection, $scale, $date)
     {
         $partnersMap = $this->getPartners();

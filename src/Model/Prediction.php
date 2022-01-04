@@ -16,7 +16,7 @@ class Prediction
         $this->scale = $scale;
     }
 
-    public function appendTimePrediction(string $time, string $value): void
+    public function pushTimePrediction(string $time, string $value): void
     {
         $this->predictions[] = new TimePrediction(time: $time, value: $value);
     }

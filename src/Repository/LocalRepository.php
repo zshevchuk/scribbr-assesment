@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Model\Prediction;
-use App\Model\PredictionsCollection;
 use App\Parser\FactoryParser;
 use Symfony\Component\HttpFoundation\File\File;
 

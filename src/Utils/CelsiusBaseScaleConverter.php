@@ -6,7 +6,7 @@ use App\Contract\ConvertableInterface;
 use App\Model\Scale\CelsiusBaseScale\FactoryCelsiusBaseScales;
 
 /**
- * Converts supplied scaled by using Celsius as a common denominator
+ * Converts supplied scaled by using Celsius as a common denominator by converting it to a base scale and then to a required
  */
 final class CelsiusBaseScaleConverter
 {

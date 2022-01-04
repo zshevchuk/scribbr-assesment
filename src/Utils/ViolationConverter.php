@@ -4,6 +4,9 @@ namespace App\Utils;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
+/**
+ * Service to convert ConstraintViolationListInterface violation into an array representation
+ */
 class ViolationConverter
 {
     public function violationsToArray(ConstraintViolationListInterface $violations)

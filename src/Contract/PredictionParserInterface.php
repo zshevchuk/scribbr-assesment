@@ -4,7 +4,7 @@ namespace App\Contract;
 
 interface PredictionParserInterface
 {
-    public function getScale(array $element): ?string;
+    public function getScale(array $row): ?string;
 
     public function getDate(array $row): ?string;
 

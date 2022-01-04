@@ -19,7 +19,6 @@ class PartnersCollection
         return $this->partners;
     }
 
-    // TODO: Autowire, using DI
     public function getData(PredictionsCollection $predictionsCollection, $scale, $date)
     {
         $partnersMap = $this->getPartners();

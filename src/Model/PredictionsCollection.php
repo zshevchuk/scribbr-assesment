@@ -34,7 +34,7 @@ class PredictionsCollection
          $this->hashMap[$key][] = $value;
     }
 
-    public function finalize()
+    public function finalize(): array
     {
         $predictions = $this->getHashMap();
 

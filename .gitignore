@@ -1,3 +1,5 @@
+.env
+.idea
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -7,6 +9,7 @@
 /public/bundles/
 /var/
 /vendor/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -15,3 +18,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

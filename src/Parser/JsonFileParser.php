@@ -2,33 +2,19 @@
 
 namespace App\Parser;
 
-use App\Contract\FileParserInterface;
-use App\Contract\PredictionParserInterface;
-use App\Model\Prediction;
 use Symfony\Component\HttpFoundation\File\File;
 
-class JsonFileParser extends FileParser implements FileParserInterface, PredictionParserInterface
+class JsonFileParser extends PredictionFileParser
 {
-    public function parse(File $file)
+    public function getContent(File $file): array
     {
-        $xml = (array)json_decode($file->getContent());
-        $xml = (array)$xml['predictions'];
+        $outer = (array)json_decode($file->getContent());
+        return (array)$outer['predictions'];
+    }
 
-        $date = $this->getDate($xml);
-        $scale = $this->getScale($xml);
-        $city = $this->getCity($xml);
-
-        $Prediction = new Prediction(date: $date, scale: $scale, city: $city);
-
-        foreach ($xml['prediction'] as $content) {
-            $content = (array)$content;
-            $time = $this->getTime($content);
-            $value = $this->getValue($content);
-
-            $Prediction->appendTimePrediction($time, $value);
-        }
-
-        return $Prediction;
+    public function getTimestamps(array $content): array
+    {
+        return $content['prediction'];
     }
 
     public function getScale(array $element): ?string
@@ -55,5 +41,4 @@ class JsonFileParser extends FileParser implements FileParserInterface, Predicti
     {
         return $row['value'];
     }
-
 }

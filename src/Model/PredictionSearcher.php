@@ -13,5 +13,4 @@ class PredictionSearcher
 
         return $partnersCollection->getData($predictionCollection, $scale, $date);
     }
-
 }

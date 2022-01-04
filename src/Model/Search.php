@@ -8,16 +8,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Search
 {
-    public ?\DateTime $date;
+    public string $date;
     public string $scale;
 
-    public function __construct(\DateTime $date = null, string $scale = MinusScales::CELSIUS)
+    public function __construct(string $date, string $scale = MinusScales::CELSIUS)
     {
         $this->scale = $scale;
         $this->date = $date;
     }
 
-    public function getDate(): ?\DateTime
+    public function getDate(): string
     {
         return $this->date;
     }
@@ -29,7 +29,12 @@ class Search
 
     public function isDateOverDue(): bool
     {
-        return $this->getDate() > new \DateTime('+10 days');
+        return strtotime($this->getDate()) > strtotime('+10 days');
+    }
+
+    public function isDatePast(): bool
+    {
+        return strtotime('today') > strtotime($this->getDate());
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
@@ -39,18 +44,26 @@ class Search
             new Assert\NotBlank()
         );
 
-        $choices = [MinusScales::CELSIUS, MinusScales::FAHRENHEIT];
         $metadata->addPropertyConstraint(
-            'scale',
-            new Assert\Choice([
-                'choices' => $choices,
-                'message' => 'Choose a valid scale. ' . implode(' or ', $choices),
+            'date',
+            new Assert\Date([
+                'message' => 'Please provide date in YYYY-MM-DD format',
             ])
         );
 
         $metadata->addPropertyConstraint(
-            'date',
-            new Assert\GreaterThanOrEqual('today')
+            'scale',
+            new Assert\Choice([
+                'choices' => MinusScales::$scalesMap,
+                'message' => 'Choose a valid scale. ' . implode(' or ', MinusScales::$scalesMap),
+            ])
+        );
+
+        $metadata->addGetterConstraint(
+            'DatePast',
+            new Assert\IsFalse([
+                'message' => 'Date cannot be a past one',
+            ])
         );
 
         $metadata->addGetterConstraint(
@@ -59,7 +72,5 @@ class Search
                 'message' => 'Date must be not later than 10 days from now',
             ])
         );
-
-
     }
 }

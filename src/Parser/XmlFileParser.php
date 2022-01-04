@@ -2,32 +2,20 @@
 
 namespace App\Parser;
 
-use App\Contract\FileParserInterface;
-use App\Contract\PredictionParserInterface;
-use App\Model\Prediction;
 use Symfony\Component\HttpFoundation\File\File;
 
-class XmlFileParser extends FileParser implements FileParserInterface, PredictionParserInterface
+class XmlFileParser extends PredictionFileParser
 {
-    public function parse(File $file)
+    public function getContent(File $file): array
     {
-        $xml = (array)simplexml_load_file($file->getPathname()) or throw new \Exception("Couldn't parse file");
+        $content = simplexml_load_file($file->getPathname());
 
-        $date = $this->getDate($xml);
-        $scale = $this->getScale($xml);
-        $city = $this->getCity($xml);
+        return (array)$content;
+    }
 
-        $Prediction = new Prediction(date: $date, scale: $scale, city: $city);
-
-        foreach ($xml['prediction'] as $content) {
-            $content = (array)$content;
-            $time = $this->getTime($content);
-            $value = $this->getValue($content);
-
-            $Prediction->appendTimePrediction($time, $value);
-        }
-
-        return $Prediction;
+    public function getTimestamps(array $content): array
+    {
+        return $content['prediction'];
     }
 
     public function getScale(array $element): ?string

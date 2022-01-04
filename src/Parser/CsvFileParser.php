@@ -2,58 +2,37 @@
 
 namespace App\Parser;
 
-use App\Contract\FileParserInterface;
-use App\Contract\PredictionParserInterface;
 use App\Enum\CsvMappingEnum;
-use App\Model\Prediction;
-use Symfony\Component\HttpFoundation\File\File;
 
-class CsvFileParser extends FileParser implements FileParserInterface, PredictionParserInterface
+class CsvFileParser extends PredictionFileParser
 {
-    public function parse(File $file): Prediction
+    public function getContent($file): array
     {
-        // we do not care about memory, so we dont need to use streams here
-        $csvContent = array_map('str_getcsv', $this->getContent($file));
+         $csvContent = array_map('str_getcsv', file($file->getPathname()));
+         // remove header
+         array_shift($csvContent);
 
-        // here we could've parser mapping to get lines
-        $mapping = array_shift($csvContent);
-        // we assuming that format is gonna be always the same
-        $header = $csvContent[0];
-
-        $date = $this->getDate($header);
-        $scale = $this->getScale($header);
-        $city = $this->getCity($header);
-
-        $Prediction = new Prediction(date: $date, scale: $scale, city: $city);
-
-        foreach($csvContent as $content) {
-            $time = $this->getTime($content);
-            $value = $this->getValue($content);
-
-            $Prediction->appendTimePrediction($time, $value);
-        }
-
-        return $Prediction;
+         return $csvContent;
     }
 
-    public function getContent($file): array|false
+    public function getTimestamps(array $content): array
     {
-        return file($file->getPathname());
+        return $content;
     }
 
     public function getScale(array $row): ?string
     {
-        return $row[CsvMappingEnum::SCALE_COLUMN];
+        return $row[0][CsvMappingEnum::SCALE_COLUMN];
     }
 
     public function getDate(array $row): ?string
     {
-        return $row[CsvMappingEnum::DATE_COLUMN];
+        return $row[0][CsvMappingEnum::DATE_COLUMN];
     }
 
     public function getCity(array $row): ?string
     {
-        return $row[CsvMappingEnum::CITY_COLUMN];
+        return $row[0][CsvMappingEnum::CITY_COLUMN];
     }
 
     public function getTime(array $row): ?string
